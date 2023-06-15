@@ -1,0 +1,15 @@
+{% extends 'posts/base.html' %}
+{%load static%}
+{%block container%}
+
+{% for c in category%}
+        <a href="{{ c.get_absolute_url }}" class="c_category_0">
+            <div class="c_category_1">
+                <h1 class="c_name_category">{{c.name}}</h1>
+                <img src="{{c.picture_of_Category.url}}" alt="" class="c_pic">
+
+            </div>
+        </a>
+{% endfor %}
+
+{% endblock %}

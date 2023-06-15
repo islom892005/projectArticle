@@ -1,0 +1,21 @@
+{% extends 'posts/base.html' %}
+{%load static%}
+
+
+
+
+{%block container%}
+
+<form method="post" enctype='multipart/form-data' class="add_new_form">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form">
+        <label class="text" for="{{ field.auto_id }}">{{ field.label }}</label>
+        {{ field }}
+        {{ field.errors }}
+    </div>
+    {% endfor %}
+    <button type="submit" class="add_new_submit">submit</button>
+</form>
+
+{% endblock %}

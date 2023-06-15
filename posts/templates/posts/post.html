@@ -1,0 +1,20 @@
+{% extends 'posts/base.html' %}
+{%load static%}
+{%block container%}
+
+<div class="my_blog_content">
+
+    <div class="my_blog_head_content">
+        <h1 class="my_blog_head_text"> {{post.title}} </h1>
+
+    </div>
+
+    <div class="my_blog_content_inside">
+        <img src="{{post.picture_of_content.url}}" alt="" class="my_blog_pic">
+        
+        <p class="my_blog_content_paragraph">{{post.text_of_content|linebreaks}}</p>
+    </div>
+
+</div>
+
+{% endblock %}

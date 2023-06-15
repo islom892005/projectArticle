@@ -1,0 +1,28 @@
+{% extends 'posts/base.html' %}
+{%load static%}
+{%block container%}
+{% for i in main%}
+    
+        <div class="main_content">
+
+            <div class="main_head_content">
+                <h1 class="main_head_text"> {{i.title}} </h1>
+            </div>
+
+            <div class="main_content_inside">
+                
+                <img src="{{i.picture_of_content.url}}" alt="" class="main_pic">
+                
+                
+                <p><b class="main_content_paragraph">{{ i.text_of_content|linebreaks|truncatewords:25}}</b>
+                    <b class="main_read_more"><a href="{{ i.get_absolute_url }}">read more</a></b>
+                </p>
+            </div>
+
+        
+        </div>
+       
+
+
+{% endfor %}    
+{% endblock %}

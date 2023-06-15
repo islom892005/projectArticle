@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="{% static 'posts/css/styles.css' %}">
+    <title>{{title}}</title>
+</head>
+
+<body>
+    <header>
+        
+        {% if selected == 'Article'%}
+        <a href="{% url 'main'%}" class="namee">Article</a>
+        {% else %}
+        <a href="{% url 'main'%}" class="name">Article</a>
+        {% endif %}
+
+    <div class="category">
+
+            {% if selected == 'categories'%}
+            <a href="{% url 'categories'%}" class="selected"> Categories </a>
+            {% else %}
+            <a href="{% url 'categories'%}" class="link"> Categories </a>
+            {% endif %}
+
+            
+
+        {% if request.user.is_authenticated %}
+            {% if selected == 'add_new_post'%}
+                <a href="{% url 'add_new_post'%}" class="selected">Add new post</a>
+            {% else %}
+                <a href="{% url 'add_new_post'%}" class="link">Add new post</a>
+            {% endif %}
+
+            <a href="{% url 'logout'%}" class="link_logout">Log out</a>
+        {% else %}
+            {% if selected == 'Log_in'%}
+            <a href="{% url 'log_in'%}" class="selected_login">Log in </a>
+            {% else %}
+            <a href="{% url 'log_in'%}" class="link_login">Log in </a>
+            {% endif %}
+
+            {% if selected == 'Sign_up'%}
+            <a href="{% url 'sign_up'%}" class="selected_signup">| Sign up</a>
+            {% else %}
+            <a href="{% url 'sign_up'%}" class="link_signup">| Sign up</a>
+            {% endif %}
+        {% endif %}
+        
+
+    </div>
+    </header>
+    {% block searchbox%}
+    {%endblock%}
+    <div class="container">
+
+        {% block container%}
+        {% endblock %}
+
+    </div>
+
+
+<footer>
+    <nav class="list_pages">
+        <ul >
+            {% for p in paginator.page_range %}
+            {% if page_obj.number == p%}
+                <li class="page_num_selected">
+                  <a href="?page={{ p }}">{{ p }}</a>  
+                </li>
+            {% elif p >= page_obj.number|add:-2 and page_obj.number|add:2 >= p %}
+                <li class="page_num">
+                    <a href="?page={{ p }}">{{ p }}</a>  
+                </li>
+              {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+</footer>
+    
+</body>
+
+</html>
