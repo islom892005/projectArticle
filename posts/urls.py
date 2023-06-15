@@ -2,7 +2,7 @@ from django.urls import path
 from .views import *
 from django.views.decorators.cache import cache_page
 urlpatterns = [
-    path('', cache_page(60 * 2)(Main.as_view()), name='main'),
+    path('',Main.as_view(), name='main'),
     path('categories/', cache_page(60 * 2)(Categories.as_view()), name='categories'),
     path('add_new_post/', add_new_post, name='add_new_post'),
     path('post/<slug:post_slug>/', cache_page(60 * 2)(Show_post.as_view()), name='post'),
