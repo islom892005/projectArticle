@@ -25,8 +25,8 @@ class Main(ListView):
         context['title'] = 'Main'
         context['selected'] = 'Article'
         return context
-
-
+    def get_queryset(self):
+        return Content.objects.all().reverse()
 
 
 class Categories(ListView):
